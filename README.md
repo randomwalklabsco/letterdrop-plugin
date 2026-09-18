@@ -67,10 +67,6 @@ The MCP server provides five tools:
 | `update_knowledge_base_buyer_filters` | write |
 | `list_workspaces` | read |
 
-The connector reads. It cannot contact anyone on your behalf, and it cannot
-create or run outreach sequences. The only write is the buyer-filter
-definition, and `/buyer-filters` asks before calling it.
-
 ## Authentication
 
 OAuth 2.1 with PKCE against `api.letterdrop.com`; no API key to paste and no
