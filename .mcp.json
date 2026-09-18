@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "letterdrop": {
+      "type": "http",
+      "url": "https://mcp.letterdrop.com/mcp"
+    }
+  }
+}

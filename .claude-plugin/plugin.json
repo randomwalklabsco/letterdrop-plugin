@@ -1,0 +1,19 @@
+{
+  "name": "letterdrop",
+  "description": "Explore in-market accounts that might be purchasing from competing vendors right now. Filter and fetch contacts and accounts to prioritize in outreach and advertising.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Letterdrop",
+    "url": "https://letterdrop.com"
+  },
+  "homepage": "https://letterdrop.com",
+  "repository": "https://github.com/randomwalklabsco/letterdrop-plugin",
+  "license": "MIT",
+  "keywords": [
+    "sales",
+    "competitive-intelligence",
+    "crm",
+    "pipeline",
+    "outbound"
+  ]
+}
