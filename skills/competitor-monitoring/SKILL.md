@@ -47,13 +47,13 @@ before concluding an account has no buying committee.
 
 ## Four rules that decide whether your answer is true
 
-**1. Records that predate tracking are not new activity.** A contact with
+**1. Historical records are not current activity.** A contact with
 `isHistoricInitialConnection: true` (or an account with
-`hasOnlyHistoricInitialConnections: true`) describes a relationship that
-already existed when the workspace started tracking; the first import simply
-recorded it. Its timestamps are null on purpose. `collectedDate` is when that
-import ran, often recent — never present it as an activity date, and never
-count these as evidence of a live cycle.
+`hasOnlyHistoricInitialConnections: true`) is a historical record: it describes
+a pre-existing relationship rather than something that happened recently. Its
+timestamps are null on purpose. `collectedDate` is when the record entered the
+workspace, often recent — never present it as an activity date, and never count
+these as evidence of a live cycle.
 
 **2. Buying committee members produced no signal.** `contactType: 'Engaged
 Contact'` (`hasOwnSignal: true`) means the signal came from that person

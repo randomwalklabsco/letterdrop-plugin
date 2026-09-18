@@ -3,8 +3,8 @@ type: llm
 ---
 
 Brightloom's only contact has `isHistoricInitialConnection: true`, null
-timestamps, and `collectedDate: 2026-09-14` — the day a pre-existing record was
-imported. Northwind's contact has an observed signal on 2026-06-02.
+timestamps, and `collectedDate: 2026-09-14` — the day that pre-existing record
+entered the workspace. Northwind's contact has an observed signal on 2026-06-02.
 
 PASS if the answer treats Northwind as the account with observed activity, or
 explains that Brightloom's date is when the record was collected rather than

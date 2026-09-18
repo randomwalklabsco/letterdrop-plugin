@@ -1,7 +1,7 @@
 ---
 schema_version: "1.1"
 name: historical-records
-description: A record that predates tracking is not reported as recent activity, and collectedDate is not presented as an activity date.
+description: A historical record is not reported as recent activity, and collectedDate is not presented as an activity date.
 tags: [competitor-monitoring]
 runs: 3
 max_turns: 10

@@ -1,8 +1,3 @@
----
-expect:
-  limit: number
----
-
 {
 "accounts": [
 {
@@ -77,6 +72,6 @@ expect:
 "buyingCommittee": []
 }
 ],
-"pagination": { "total": 2, "limit": {{input.limit}}, "offset": 0, "hasMore": false, "nextOffset": null },
+"pagination": { "total": 2, "limit": 25, "offset": 0, "hasMore": false, "nextOffset": null },
 "coverage": { "engagedContactsIncluded": true, "buyingCommitteeIncluded": true, "maxContactsPerAccount": 100 }
 }

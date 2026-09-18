@@ -13,8 +13,8 @@ rather than substituting a similar name.
 
 Cover:
 
-1. **Signal** — which competitors, when, and whether the signals are observed
-   activity or records that predate tracking (`isHistoric: true`).
+1. **Signal** — which competitors, when, and whether the signals are current
+   activity or historical records (`isHistoric: true`).
 2. **People** — who the signals came from directly, and separately who is on
    the buying committee. Keep those two groups distinct, and never describe a
    committee member as having done anything toward a competitor.

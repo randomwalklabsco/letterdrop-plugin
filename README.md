@@ -1,24 +1,25 @@
 # Letterdrop plugin for Claude Code
 
-Explore in-market accounts that might be purchasing from competing vendors
-right now. Filter and fetch contacts and accounts to prioritize in outreach and
-advertising.
+Find the accounts that are in a competitor's sales cycle right now, see who at
+those accounts is involved, and check what your CRM already says about them —
+so outreach and ad spend go to the companies that are actually in market.
 
-This connector reads your Letterdrop workspace. It lets you fetch contacts and
-companies who might be evaluating a competitor. It also provides additional
-data like priority, context, fit, and firmographics.
-
-You can also read and update the workspace's definition of a buyer (company
-filters, buyer titles) that decides who counts as a valid lead.
-
-The plugin adds commands and a skill on top of that data, so answers respect
-what the fields actually mean.
+The plugin bundles the Letterdrop MCP connector with three commands and a
+skill, so answers respect what the underlying fields actually mean instead of
+guessing from field names.
 
 ## Install
 
 ```
 /plugin marketplace add anthropics/claude-plugins-community
-/plugin install letterdrop
+/plugin install letterdrop@claude-community
+```
+
+Or from a shell:
+
+```bash
+claude plugin marketplace add anthropics/claude-plugins-community
+claude plugin install letterdrop@claude-community
 ```
 
 Then authenticate:
@@ -38,9 +39,7 @@ account; the connector reads the workspace you choose during authorization.
 | `/account-brief <company>` | One account in depth: signals, committee, outreach history, CRM state |
 | `/buyer-filters [change]` | Show the buyer definition that decides who counts as a valid lead; update it only on explicit confirmation |
 
-## Example use cases
-
-You do not have to use the commands — asking in plain language works too:
+You do not have to use the commands — plain language works too:
 
 - "Find contacts in the US at companies between 500-5k employees that are not
   already open opportunities or customers that may be evaluating competitors"
@@ -52,10 +51,9 @@ You do not have to use the commands — asking in plain language works too:
 
 `competitor-monitoring` loads automatically when the conversation touches this
 data. It carries the rules that decide whether an answer is true rather than
-merely plausible: records that predate tracking are not new activity, buying
-committee members produced no signal of their own, attribution is a claim
-rather than an ordering of dates, and a stale signal keeps its original
-priority.
+merely plausible: historical records are not current activity, buying committee
+members produced no signal of their own, attribution is a claim rather than an
+ordering of dates, and a stale signal keeps its original priority.
 
 ## Tools
 
@@ -87,8 +85,7 @@ claude plugin validate .       # manifest, commands, skills
 claude plugin validate . --strict
 ```
 
-The MCP server itself lives in
-[letterdrop-mcp-server](https://github.com/randomwalklabsco/letterdrop-mcp-server).
+Evals live in `evals/`. Run them with `claude plugin eval .`.
 
 ## Links
 
