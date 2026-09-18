@@ -51,9 +51,9 @@ You do not have to use the commands — plain language works too:
 
 `competitor-monitoring` loads automatically when the conversation touches this
 data. It carries the rules that decide whether an answer is true rather than
-merely plausible: historical records are not current activity, buying committee
-members produced no signal of their own, attribution is a claim rather than an
-ordering of dates, and a stale signal keeps its original priority.
+merely plausible: buying committee members produced no signal of their own,
+attribution is a claim rather than an ordering of dates, and a stale signal
+keeps its original priority.
 
 ## Tools
 
