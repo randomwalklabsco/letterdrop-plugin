@@ -19,6 +19,7 @@
 {
 "name": "Dana Whitfield",
 "title": "VP Data Platform",
+"workEmail": "dana.whitfield@northwind-analytics.com",
 "contactType": "Engaged Contact",
 "hasOwnSignal": true,
 "isHistoricInitialConnection": false,
@@ -32,6 +33,7 @@
 {
 "name": "Priya Raman",
 "title": "Chief Data Officer",
+"workEmail": "",
 "contactType": "Buying Committee",
 "hasOwnSignal": false,
 "competitors": ["Rival BI"],
