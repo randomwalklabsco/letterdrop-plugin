@@ -1,6 +1,6 @@
 ---
 name: competitor-monitoring
-description: Read Letterdrop competitor monitoring data correctly - which accounts are in a competitor's sales cycle, who is on the buying committee, and what the CRM says. Use when answering questions about competitor signals, in-market accounts, buying committees, attribution, or when building an outreach list, CSV or pipeline report from Letterdrop data.
+description: Read Letterdrop competitor monitoring data correctly - which accounts are in a competitor's sales cycle, who is on the buying committee, and what the CRM says. Load this before answering from any Letterdrop competitor monitoring tool result - several fields do not mean what their names suggest (a buying committee entry's competitors and engagedWith describe the account, not that person). Use for questions about competitor signals, in-market accounts, buying committees, attribution, "which accounts are in market and who should we reach out to", or when building an outreach list, CSV or pipeline report from Letterdrop data. For drafting or pushing outreach emails, use signal-based-outreach.
 ---
 
 # Reading Letterdrop competitor monitoring data

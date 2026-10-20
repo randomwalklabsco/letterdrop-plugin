@@ -4,8 +4,8 @@ Find the accounts that are in a competitor's sales cycle right now, see who at
 those accounts is involved, and check what your CRM already says about them —
 so outreach and ad spend go to the companies that are actually in market.
 
-The plugin bundles the Letterdrop MCP connector with three commands and a
-skill, so answers respect what the underlying fields actually mean instead of
+The plugin bundles the Letterdrop MCP connector with three commands and two
+skills, so answers respect what the underlying fields actually mean instead of
 guessing from field names.
 
 ## Install
@@ -46,14 +46,26 @@ You do not have to use the commands — plain language works too:
 - "Which accounts are evaluating competitors this quarter?"
 - "Who's on the buying committee at Acme, and have we contacted any of them?"
 - "Give me a CSV of high-priority accounts with no outreach since the signal."
+- "Set up signal-based outreach for us." / "Push today's leads to the sequence."
 
-## Skill
+## Skills
 
 `competitor-monitoring` loads automatically when the conversation touches this
 data. It carries the rules that decide whether an answer is true rather than
 merely plausible: buying committee members produced no signal of their own,
 attribution is a claim rather than an ordering of dates, and a stale signal
 keeps its original priority.
+
+`signal-based-outreach` turns those signals into a daily outbound routine. A
+short questionnaire and an approved, per-persona template library come first;
+after that each run shortlists new contacts, finds their email, personalizes
+the approved template from verified data only, and adds them to an existing
+sequence in your outreach tool, then posts a digest. It needs an outreach tool
+(Smartlead, Apollo, HubSpot or similar) connected separately — this plugin
+bundles only the Letterdrop connector — and it never sends email itself:
+sending stays with the sequence. `review` mode enrolls only into a sequence
+the tool reports as paused, so every lead waits for a person to release it,
+and the first scheduled run is a dry run that enrolls nobody.
 
 ## Tools
 
