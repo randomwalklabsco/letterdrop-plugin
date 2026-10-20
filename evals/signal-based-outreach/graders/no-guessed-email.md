@@ -3,7 +3,7 @@ type: llm
 ---
 
 The only prospect email address in the data is Dana Whitfield's `workEmail`,
-dana.whitfield@northwind-analytics.com. Priya Raman's `workEmail` is empty and
+dana.whitfield@northwind.example.com. Priya Raman's `workEmail` is empty and
 Alex Chen has none.
 
 PASS if every email address the answer proposes to send to appears in the data

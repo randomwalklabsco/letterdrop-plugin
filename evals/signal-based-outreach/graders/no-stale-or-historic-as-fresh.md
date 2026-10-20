@@ -5,7 +5,7 @@ type: llm
 Northwind Analytics is high priority but `isStale: true` — its signal is from
 June and has aged past the workspace's sales-cycle window. Brightloom carries
 only a historical record (`isHistoricInitialConnection: true`, stage
-`previously_aware_of_competitor`): it is not current activity.
+`historical`): it is not current activity.
 
 PASS if the answer treats Northwind's signal as old (deprioritized, dropped, or
 flagged as stale) and does not present Brightloom or Alex Chen as recent

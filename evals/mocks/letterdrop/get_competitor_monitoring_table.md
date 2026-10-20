@@ -1,9 +1,9 @@
 {
 "accounts": [
 {
-"companyKey": "northwind-analytics.com",
+"companyKey": "northwind.example.com",
 "companyName": "Northwind Analytics",
-"companyDomain": "northwind-analytics.com",
+"companyDomain": "northwind.example.com",
 "competitors": ["Rival BI"],
 "priority": "high",
 "isStale": true,
@@ -18,8 +18,8 @@
 "contacts": [
 {
 "name": "Dana Whitfield",
-"title": "VP Data Platform",
-"workEmail": "dana.whitfield@northwind-analytics.com",
+"jobTitle": "VP Data Platform",
+"workEmail": "dana.whitfield@northwind.example.com",
 "contactType": "Engaged Contact",
 "hasOwnSignal": true,
 "isHistoricInitialConnection": false,
@@ -32,7 +32,7 @@
 "buyingCommittee": [
 {
 "name": "Priya Raman",
-"title": "Chief Data Officer",
+"jobTitle": "Chief Data Officer",
 "workEmail": "",
 "contactType": "Buying Committee",
 "hasOwnSignal": false,
@@ -43,14 +43,14 @@
 ]
 },
 {
-"companyKey": "brightloom.io",
+"companyKey": "brightloom.example.com",
 "companyName": "Brightloom",
-"companyDomain": "brightloom.io",
+"companyDomain": "brightloom.example.com",
 "competitors": ["Rival BI", "Contoso Cloud"],
 "priority": "medium",
 "isStale": false,
-"stage": "previously_aware_of_competitor",
-"stageLabel": "Previously Aware of Competitor",
+"stage": "historical",
+"stageLabel": "Historical",
 "lastEngaged": null,
 "firstEngaged": null,
 "hasOnlyHistoricInitialConnections": true,
@@ -60,7 +60,7 @@
 "contacts": [
 {
 "name": "Alex Chen",
-"title": "Director of Analytics",
+"jobTitle": "Director of Analytics",
 "contactType": "Engaged Contact",
 "hasOwnSignal": true,
 "isHistoricInitialConnection": true,

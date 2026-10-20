@@ -63,8 +63,9 @@ the approved template from verified data only, and adds them to an existing
 sequence in your outreach tool, then posts a digest. It needs an outreach tool
 (Smartlead, Apollo, HubSpot or similar) connected separately — this plugin
 bundles only the Letterdrop connector — and it never sends email itself:
-sending stays with the sequence, and `review` mode leaves every lead paused
-for a person to release.
+sending stays with the sequence. `review` mode enrolls only into a sequence
+the tool reports as paused, so every lead waits for a person to release it,
+and the first scheduled run is a dry run that enrolls nobody.
 
 ## Tools
 

@@ -33,15 +33,23 @@ options if the interface supports them. Store every answer in
    connected (tool-search the name; then Composio) and offer only those;
    if none is connected, offer to connect one and stop until it is.
 4. **Sequence/campaign** — which existing sequence in that tool to push
-   leads into. List the tool's sequences and let them pick. Never create
-   one automatically.
+   leads into. List the tool's sequences with their status (active /
+   paused / draft) and let them pick. Never create one automatically.
 5. **Send mode** — `auto` (active sequence; sends on the tool's schedule)
    or `review` (paused sequence / drafts a human releases). Suggest
-   `review` for the first week if they're unsure.
-6. **Daily cap** — max leads to push per day. Suggest 25–50.
-7. **Who to target** — which Letterdrop priorities to include (default
-   high + medium), and whether to include buying-committee
-   decision-makers who didn't personally engage (default yes).
+   `review` for the first week if they're unsure. `review` needs a
+   sequence the tool reports as paused or draft, or a tool that supports
+   per-contact paused enrollment: if they pick `review` with a sequence
+   that is active (or whose status can't be read), say so and ask them
+   to pause it, pick another, or choose `auto` explicitly. Never store
+   `review` against a sequence not verified as paused unless the tool
+   enrolls each contact paused.
+6. **Daily cap** — max leads to push per day. Suggest 25–50; never store
+   more than 50 (see the hard ceiling in D4).
+7. **Who to target** — which Letterdrop priorities to include: any of
+   `high`, `medium`, `nurture` (default high + medium; there is no
+   `low`), and whether to include buying-committee decision-makers who
+   didn't personally engage (default yes).
 8. **Digest** — where to send the daily summary: a Slack channel/DM, or
    just in chat.
 9. **Where to keep state** — a Google Drive folder (if connected) or a
@@ -115,8 +123,13 @@ table read):
 - `last_activity_within_days: 2` (widen to 7 on the first run or after a
   missed day)
 - `outreach_status: ["__no_outreach__"]`
-- `best_fit: "best_fit"`, `priority:` the array from config (any of
-  `high`, `medium`, `low`, `nurture`)
+- `priority:` the array from config — only `high`, `medium` and
+  `nurture` are accepted. Drop any other value (a config saved with
+  `low` before the buckets changed) before the call and rewrite the
+  config without it, or every pull fails validation.
+- Never pass `best_fit` here: few accounts in most workspaces are marked
+  best-fit, and combined with the two filters above it routinely returns
+  nothing. Use `isBestFit` as a ranking boost in D2 instead.
 - `include: ["contacts","engagements","profile_details","buying_committee"]`
 - `limit: 25`; while `pagination.hasMore` is true, request the next page
   with `offset: pagination.nextOffset`, and stop once you have today's
@@ -134,9 +147,12 @@ Read Letterdrop's fields as they're defined:
   **`'Buying Committee'`** (`hasOwnSignal: false`) did **not** engage
   anyone; never write an email implying they did. Use the evergreen
   template for them.
-- **`isHistoricInitialConnection: true`** or stage `historical`
+- **`isHistoricInitialConnection: true`**, an account with
+  `hasOnlyHistoricInitialConnections: true`, or stage `historical`
   (spelled `previously_aware_of_competitor` before 2026-09) → not recent
-  activity; never describe it as a live signal.
+  activity and not in market. Drop these contacts from the daily
+  shortlist (and committee members at historical-only accounts); never
+  describe them as a live signal.
 - **`recommendedChannels.email`** → only meaningful when
   `recommendedAction` is non-empty: then `false` means the weekly plan
   routed this person to another channel, so don't email. An empty
@@ -146,13 +162,15 @@ Read Letterdrop's fields as they're defined:
   is unknown, so lean on the duplicate check in D4.
 - Fuzzy-match `jobTitle` to an approved persona, using
   `buyingCommitteeRole` (`economic_buyer`, `business_evaluator`,
-  `technical_evaluator`, `champion`, `end_user`) as a tiebreaker; drop
-  anyone who matches no persona.
+  `technical_evaluator`, `technical_gatekeeper`,
+  `procurement_legal_security_gatekeeper`, `end_user`) as a tiebreaker;
+  drop anyone marked `irrelevant` or who matches no persona.
 - Skip contacts whose own `contacted: true` flag is set — someone on the
   team already reached them, whatever the account-level status says.
 
 Rank: engaged contacts on non-stale high-priority accounts first, then
-buying-committee decision-makers at those accounts, up to the cap.
+buying-committee decision-makers at those accounts, up to the cap. Within
+each tier, accounts with `isBestFit: true` rank ahead of the rest.
 
 ### D3 — Find the email and write the email
 1. **Find the email** — Letterdrop first, then the connected outreach
@@ -179,20 +197,38 @@ buying-committee decision-makers at those accounts, up to the cap.
    `profile_details` and the outreach tool are the sources. Never invent
    a detail a source didn't return; if a placeholder can't be filled
    truthfully, cut that sentence.
-3. Pick the matched persona's template (signal-triggered for engaged
-   contacts, evergreen for buying committee), fill placeholders, keep the
+3. Pick the matched persona's template: signal-triggered **only** when
+   the contact has `hasOwnSignal: true`, `isHistoricInitialConnection`
+   is not true and the account's `isStale` is not true; evergreen for
+   everyone else (buying committee, stale accounts). Fill placeholders, keep the
    approved offer as the CTA, and write a subject line: ≤6 words, specific
    to the real problem/signal, no clickbait or spam-trigger phrases.
    Personalize the follow-up with name/company only.
 
 ### D4 — Push to the sequence
-Per `references/<tool>.md`: find-or-create the contact → check **in the
-tool itself** that they aren't already in an active sequence or on the
-unsubscribe/do-not-contact list → add to the configured sequence → set
-the subject/body/follow-up fields the sequence step actually references →
-re-read enrollment status to confirm. In `review` mode, add to the paused
-sequence / as drafts and tell the user where to release them. This skill
-never sends email itself.
+Before any enrollment on every run, fail closed:
+- **Re-read the configured sequence's status in the tool.** In `review`
+  mode, enroll only if the tool reports it paused or draft, or if each
+  contact can be enrolled individually in a paused state. If the
+  sequence is active, or its status can't be read, enroll **nobody**:
+  stop, keep today's drafts in the digest, and tell the user the
+  sequence must be paused (or the mode changed to `auto`) first.
+- **Hard ceiling:** never enroll more than the configured daily cap, and
+  never more than 50 in one run whatever the config says.
+- **Dry run first:** the first scheduled run after setup (config has no
+  `first_run_reviewed: true`) enrolls nobody. It shortlists and drafts as
+  normal, puts every draft and target address in the digest, and asks
+  the user to check them; set `first_run_reviewed: true` only once they
+  confirm. Those leads stay out of the checkpoint so the next run pushes
+  them.
+
+Then, per `references/<tool>.md`: find-or-create the contact → check **in
+the tool itself** that they aren't already in an active sequence or on
+the unsubscribe/do-not-contact list → add to the configured sequence →
+set the subject/body/follow-up fields the sequence step actually
+references → re-read enrollment status to confirm. In `review` mode, tell
+the user where to release the paused leads. This skill never sends email
+itself.
 
 ### D5 — Checkpoint and digest
 Record in `outreach_checkpoint.json` only leads confirmed enrolled or

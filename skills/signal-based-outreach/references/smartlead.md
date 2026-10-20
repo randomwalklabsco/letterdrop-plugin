@@ -54,3 +54,6 @@ active (auto-send) or paused/draft (review-before-send) sequence, are set
 once at first-run setup and stored in `outreach_config.json` (see the main
 skill's questionnaire). Read it from there rather than re-asking each
 run; only ask again if the stored ID no longer resolves in the platform.
+Re-read the sequence's status before every enrollment run: in `review`
+mode, enroll nothing unless it is paused/draft or the contact itself can
+be enrolled paused (main skill, D4).
