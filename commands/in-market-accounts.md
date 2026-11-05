@@ -20,8 +20,6 @@ many are on the buying committee.
 
 Then call out, in a sentence each:
 
-- any account where `isStale: true` despite a high priority, since the signal
-  has aged past the workspace's sales-cycle window
 - any account that carries only historical records
   (`hasOnlyHistoricInitialConnections: true`), which is not current activity
 - how many accounts have had no outreach since the signal landed

@@ -140,8 +140,6 @@ New = not in the checkpoint. First run: cap at the daily cap and set
 
 ### D2 — Shortlist
 Read Letterdrop's fields as they're defined:
-- **`isStale: true`** → drop or deprioritize, even if `priority` is high
-  (priority never changes when a signal goes stale).
 - **`contactType: 'Engaged Contact'`** (`hasOwnSignal: true`) personally
   produced a competitor signal of their own — a real signal.
   **`'Buying Committee'`** (`hasOwnSignal: false`) did **not** engage
@@ -168,7 +166,7 @@ Read Letterdrop's fields as they're defined:
 - Skip contacts whose own `contacted: true` flag is set — someone on the
   team already reached them, whatever the account-level status says.
 
-Rank: engaged contacts on non-stale high-priority accounts first, then
+Rank: engaged contacts on high-priority accounts first, then
 buying-committee decision-makers at those accounts, up to the cap. Within
 each tier, accounts with `isBestFit: true` rank ahead of the rest.
 
@@ -198,9 +196,9 @@ each tier, accounts with `isBestFit: true` rank ahead of the rest.
    a detail a source didn't return; if a placeholder can't be filled
    truthfully, cut that sentence.
 3. Pick the matched persona's template: signal-triggered **only** when
-   the contact has `hasOwnSignal: true`, `isHistoricInitialConnection`
-   is not true and the account's `isStale` is not true; evergreen for
-   everyone else (buying committee, stale accounts). Fill placeholders, keep the
+   the contact has `hasOwnSignal: true` and `isHistoricInitialConnection`
+   is not true; evergreen for everyone else (buying committee, historical
+   records). Fill placeholders, keep the
    approved offer as the CTA, and write a subject line: ≤6 words, specific
    to the real problem/signal, no clickbait or spam-trigger phrases.
    Personalize the follow-up with name/company only.

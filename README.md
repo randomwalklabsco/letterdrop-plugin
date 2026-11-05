@@ -53,8 +53,7 @@ You do not have to use the commands — plain language works too:
 `competitor-monitoring` loads automatically when the conversation touches this
 data. It carries the rules that decide whether an answer is true rather than
 merely plausible: buying committee members produced no signal of their own,
-attribution is a claim rather than an ordering of dates, and a stale signal
-keeps its original priority.
+and attribution is a claim rather than an ordering of dates.
 
 `signal-based-outreach` turns those signals into a daily outbound routine. A
 short questionnaire and an approved, per-persona template library come first;

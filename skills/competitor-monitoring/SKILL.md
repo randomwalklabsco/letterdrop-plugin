@@ -72,12 +72,6 @@ what `competitive_deal` exists to rule out. An empty verdict means no claim is
 being made, not that attribution was searched for and missing.
 `priorRecentOutreach` is tri-state: `null` means we could not look, not false.
 
-**4. Stale signals keep their priority.** `isStale: true` means the signal aged
-past the workspace's sales-cycle window, and it deliberately does not downgrade
-`priority`. A stale account still reads `priority: "high"`. Ranking on priority
-alone puts a months-old signal at the top of a "who should we contact now"
-list.
-
 ## Blanks
 
 A blank field usually means something specific, and inventing a value for it is
