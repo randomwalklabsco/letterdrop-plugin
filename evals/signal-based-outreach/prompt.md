@@ -1,7 +1,7 @@
 ---
 schema_version: "1.1"
 name: signal-based-outreach
-description: Daily outreach drafts keep buying-committee members out of signal claims, respect stale and historical records, and never guess an email address.
+description: Daily outreach drafts keep buying-committee members out of signal claims, respect historical records, and never guess an email address.
 tags: [signal-based-outreach]
 runs: 3
 max_turns: 12
