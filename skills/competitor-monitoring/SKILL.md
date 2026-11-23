@@ -19,7 +19,8 @@ first as if it answered the second.
   specific company: outreach timeline, classified replies, signals,
   opportunities, full committee.
 - `get_knowledge_base_buyer_filters` is the workspace's definition of a buyer —
-  company filters and buyer titles. It decides who counts as a valid lead, and
+  company filters (size, industries, HQ locations) and job-title keywords for
+  the decision-maker, end-user and full-buying-committee tabs. It decides who counts as a valid lead, and
   so who appears as a buying-committee member on every table row; read it
   before explaining why someone is or is not in a committee.
 - `list_workspaces` says which workspace this connector is reading. It is

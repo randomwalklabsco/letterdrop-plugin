@@ -15,5 +15,9 @@
 "individualContributors": {
 "titles": ["Data Engineer", "Analytics Engineer"],
 "excludedTitles": []
+},
+"fullBuyingCommittee": {
+"titles": ["VP Data Platform", "Data Engineer", "Procurement Manager"],
+"excludedTitles": ["Intern"]
 }
 }
