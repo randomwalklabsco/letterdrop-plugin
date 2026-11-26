@@ -4,8 +4,8 @@ Find the accounts that are in a competitor's sales cycle right now, see who at
 those accounts is involved, and check what your CRM already says about them —
 so outreach and ad spend go to the companies that are actually in market.
 
-The plugin bundles the Letterdrop MCP connector with three commands and two
-skills, so answers respect what the underlying fields actually mean instead of
+The plugin bundles the Letterdrop MCP connector with three commands and a
+skill, so answers respect what the underlying fields actually mean instead of
 guessing from field names.
 
 ## Install
@@ -46,43 +46,48 @@ You do not have to use the commands — plain language works too:
 - "Which accounts are evaluating competitors this quarter?"
 - "Who's on the buying committee at Acme, and have we contacted any of them?"
 - "Give me a CSV of high-priority accounts with no outreach since the signal."
-- "Set up signal-based outreach for us." / "Push today's leads to the sequence."
 
-## Skills
+## Skill
 
 `competitor-monitoring` loads automatically when the conversation touches this
 data. It carries the rules that decide whether an answer is true rather than
 merely plausible: buying committee members produced no signal of their own,
 and attribution is a claim rather than an ordering of dates.
 
-`signal-based-outreach` turns those signals into a daily outbound routine. A
-short questionnaire and an approved, per-persona template library come first;
-after that each run shortlists new contacts, finds their email, personalizes
-the approved template from verified data only, and adds them to an existing
-sequence in your outreach tool, then posts a digest. It needs an outreach tool
-(Smartlead, Apollo, HubSpot or similar) connected separately — this plugin
-bundles only the Letterdrop connector — and it never sends email itself:
-sending stays with the sequence. `review` mode enrolls only into a sequence
-the tool reports as paused, so every lead waits for a person to release it,
-and the first scheduled run is a dry run that enrolls nobody.
-
 ## Tools
 
-The MCP server provides five tools:
+The MCP server provides six tools:
 
 | Tool | Access |
 |---|---|
 | `get_competitor_monitoring_table` | read |
 | `get_competitor_monitoring_account_details` | read |
 | `get_knowledge_base_buyer_filters` | read |
-| `update_knowledge_base_buyer_filters` | write |
+| `update_knowledge_base_buyer_filters` | write — replaces the workspace's saved buyer filters |
 | `list_workspaces` | read |
+| `set_active_workspace` | write — switches which of your workspaces the connector reads |
+
+## Data this plugin returns
+
+The connector returns data your Letterdrop workspace already holds, and nothing
+else. That includes personal information about people at the accounts it lists:
+names, job titles, companies and profile links, plus any work email, personal
+email or phone number the workspace has already found for them. It also returns
+your own CRM records and your teammates' names and email addresses. It does not
+look up new contact details, contact anyone, or send email, messages or
+sequences.
+
+Everything it returns enters your Claude conversation, so treat it as you would
+any export of your CRM. You are responsible for using it in line with privacy
+and anti-spam law (for example GDPR, CAN-SPAM and CASL) and with the consent
+your workspace holds. How Letterdrop handles this data is described in the
+[privacy policy](https://letterdrop.com/privacy).
 
 ## Authentication
 
 OAuth 2.1 with PKCE against `api.letterdrop.com`; no API key to paste and no
 credentials stored by the plugin. Grants carry `mcp.read` or `mcp.read
-mcp.write` — a read-only grant is never offered the write tool.
+mcp.write` — a read-only grant is never offered either write tool.
 
 ## Development
 

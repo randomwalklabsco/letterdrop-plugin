@@ -1,6 +1,6 @@
 ---
 name: competitor-monitoring
-description: Read Letterdrop competitor monitoring data correctly - which accounts are in a competitor's sales cycle, who is on the buying committee, and what the CRM says. Load this before answering from any Letterdrop competitor monitoring tool result - several fields do not mean what their names suggest (a buying committee entry's competitors and engagedWith describe the account, not that person). Use for questions about competitor signals, in-market accounts, buying committees, attribution, "which accounts are in market and who should we reach out to", or when building an outreach list, CSV or pipeline report from Letterdrop data. For drafting or pushing outreach emails, use signal-based-outreach.
+description: Read Letterdrop competitor monitoring data correctly - which accounts are in a competitor's sales cycle, who is on the buying committee, and what the CRM says. Load this before answering from any Letterdrop competitor monitoring tool result - several fields do not mean what their names suggest (a buying committee entry's competitors and engagedWith describe the account, not that person). Use for questions about competitor signals, in-market accounts, buying committees, attribution, "which accounts are in market and who should we reach out to", or when building an outreach list, CSV or pipeline report from Letterdrop data.
 ---
 
 # Reading Letterdrop competitor monitoring data
@@ -92,6 +92,7 @@ worse than reporting it:
 ## What this connector cannot do
 
 It reads. It cannot contact anyone on the workspace's behalf, and it cannot
-create or run outreach sequences. The only write is the buyer-filter definition, which
+create or run outreach sequences. It has two writes. The buyer-filter definition
 changes what every future read of the table returns — confirm the exact titles
-with the user before calling it.
+with the user before calling it. `set_active_workspace` only changes which of the
+user's workspaces later reads come from — say which workspace an answer is from.
