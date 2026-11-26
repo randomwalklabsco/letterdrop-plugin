@@ -37,7 +37,7 @@ account; the connector reads the workspace you choose during authorization.
 |---|---|
 | `/in-market-accounts [filter]` | Accounts showing competitor buying signals now, ranked for outreach |
 | `/account-brief <company>` | One account in depth: signals, committee, outreach history, CRM state |
-| `/buyer-filters [change]` | Show the buyer definition that decides who counts as a valid lead; update it only on explicit confirmation |
+| `/buyer-filters [change]` | Show the buyer definition (company size, locations, job-title keywords per tab) that decides who counts as a valid lead; update it only on explicit confirmation |
 
 You do not have to use the commands — plain language works too:
 
